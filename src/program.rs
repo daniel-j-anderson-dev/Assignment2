@@ -24,7 +24,7 @@ impl Driver {
     fn get_input<T>(prompt: &str) -> T 
     where
         T: std::str::FromStr,
-        <T as std::str::FromStr>::Err: std::fmt::Display,
+        <T as std::str::FromStr>::Err: std::error::Error,
     {
         loop {
             match Driver::read_line(prompt).parse() {

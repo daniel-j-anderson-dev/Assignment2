@@ -7,8 +7,10 @@ impl Dispatcher {
     pub fn new() -> Dispatcher {
         return Dispatcher { bus_queue: Vec::<Bus>::new() }
     }
-    pub fn add_bus(&mut self, bus: Bus) {
+
+    pub fn add_bus(&mut self, bus: Bus) -> usize{
         self.bus_queue.push(bus);
+        return self.bus_queue.len();
     }
 
     // add_bus() "overload"

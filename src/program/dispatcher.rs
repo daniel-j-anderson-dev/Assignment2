@@ -36,4 +36,12 @@ impl Dispatcher {
         }
         return None;
     }
+
+    pub fn dispatch_bus(&mut self) -> Option<Bus> {
+        if self.bus_queue.is_empty() {
+            return None;
+        } else {
+            return Some(self.bus_queue.remove(0));
+        }
+    }
 }

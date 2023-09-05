@@ -33,6 +33,15 @@ impl Dispatcher {
         return None;
     }
 
+    pub fn find_bus_mut(&mut self, bus_id: usize) -> Option<&mut Bus> {
+        for (queue_position, bus) in self.bus_queue.iter().enumerate() {
+            if bus.get_id() == bus_id {
+                return self.bus_queue.get_mut(queue_position);
+            }
+        }
+        return None;
+    }
+
     pub fn remove_bus(&mut self, bus_id: usize) -> Option<Bus> {
         for (queue_position, bus) in self.bus_queue.iter().enumerate() {
             if bus.get_id() == bus_id {

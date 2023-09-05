@@ -30,7 +30,13 @@ impl Driver {
                         None => println!("No bus with id {id}"),
                     }
                 }
-                3 => {}
+                3 => {
+                    let id: usize = Driver::get_parsed_input("Enter bus id: ");
+                    match dispatcher.remove_bus(id) {
+                        Some(removed_bus) => println!("bus {removed_bus} removed"),
+                        None => println!("No bus with id {id}"),
+                    }
+                }
                 4 => {}
                 5 => {}
                 6 => {}

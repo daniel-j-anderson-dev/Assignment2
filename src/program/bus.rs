@@ -136,8 +136,8 @@ mod test {
         let person_a = Person::new("a"); 
         let person_b = Person::new("b"); 
         let person_c = Person::new("c"); 
-        let mut passengers = vec![person_a.clone(), person_b.clone(), person_c.clone()];
-        let mut bus = Bus::new(&passengers);
+        let passengers = vec![person_a.clone(), person_b.clone(), person_c.clone()];
+        let bus = Bus::new(&passengers);
 
         let output_a = bus.find_person("a");
         let output_b = bus.find_person("b");

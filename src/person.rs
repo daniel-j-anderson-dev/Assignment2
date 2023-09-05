@@ -14,19 +14,13 @@ impl Default for Person {
         return Person { name, ticket_number};
     }
 }
+
 impl std::fmt::Display for Person{ // this trait gives .to_string()
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         return write!(f, "{} {}", self.ticket_number, self.name);
     }
 }
-impl Clone for Person {
-    fn clone(&self) -> Self {
-        return Person { 
-            name: self.name.clone(),
-            ticket_number: self.ticket_number.clone()
-        };
-    }
-}
+
 impl Person {
     fn new(name: &str) -> Self {
         let name: String = name.to_owned();
@@ -36,6 +30,35 @@ impl Person {
             NEXT_TICKET_NUMBER += 1;
         }
         return Person { name, ticket_number};
+    }
+}
+
+// allows for &[Person].to_vec()
+impl Clone for Person {
+    fn clone(&self) -> Self {
+        return Person { 
+            name: self.name.clone(),
+            ticket_number: self.ticket_number.clone()
+        };
+    }
+}
+
+// allows for sorting
+impl PartialEq for Person {
+    fn eq(&self, other: &Self) -> bool {
+        return self.ticket_number == other.ticket_number;
+    }
+}
+impl Eq for Person {}
+
+impl Ord for Person {
+    fn cmp(&self, other: &Self) -> std::cmp::Ordering {
+        return self.ticket_number.cmp(&other.ticket_number);
+    }
+}
+impl PartialOrd for Person {
+    fn partial_cmp(&self, other: &Self) -> Option<std::cmp::Ordering> {
+        return Some(self.cmp(other));
     }
 }
 

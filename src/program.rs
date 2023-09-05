@@ -40,28 +40,29 @@ impl Driver {
                     let id: usize = Driver::get_parsed_input("Enter bus id: ");
                     let name: String;
                     let bus: &mut Bus;
-                    let person: &Person;
+                    let bus_clone: Bus;
+                    let person: Person;
 
                     match dispatcher.find_bus_mut(id) {
-                        Some(found_bus) => bus = found_bus,
+                        Some(found_bus) => {
+                            name = Driver::get_raw_input("Enter person's name: ");
+                            bus_clone = found_bus.clone();    
+                            match bus_clone.find_person(&name) {
+                                Some(found_person) => person = found_person,
+                                None => {
+                                    println!("No such person found in bus {id}");
+                                    continue;
+                                }
+                            }
+                            bus = found_bus
+                        },
                         None => {
                             println!("No bus with id {id}");
                             continue;
                         }
                     };
 
-                    name = Driver::get_raw_input("Enter person's name: ");
-
-                    let bus_clone = bus.clone();
-                    match bus_clone.find_person(name.as_str()) {
-                        Some(found_person) => person = found_person,
-                        None => {
-                            println!("No such person found in bus {id}");
-                            continue;
-                        }
-                    }
-
-                    bus.remove_person(person);
+                    bus.remove_person(&person);
                 }
                 5 => {}
                 6 => {}

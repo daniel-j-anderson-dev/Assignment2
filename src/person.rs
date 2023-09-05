@@ -22,7 +22,7 @@ impl std::fmt::Display for Person{ // this trait gives .to_string()
 }
 
 impl Person {
-    fn new(name: &str) -> Self {
+    pub fn new(name: &str) -> Self {
         let name: String = name.to_owned();
         let ticket_number: usize;
         unsafe { // program is not concurrent or parallel so this is OK

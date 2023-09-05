@@ -1,7 +1,6 @@
 pub struct Driver {}
 impl Driver {
     pub fn main() {
-        // let dispatcher = Dispatcher::new();
         println!("Bus Dispatching System\n");
         let menu: &str ="1. Add bus\n2. Add Person to bus\n3. Remove bus\n4. Remove person\n5. List passengers\n6. List busses\n7. Requeue bus\n8. Transfer person\n9. Dispatch bus\n0. Exit\n";
         loop {

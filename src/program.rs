@@ -8,10 +8,9 @@ pub struct Driver {}
 impl Driver {
     pub fn main() {
         let mut dispatcher: Dispatcher = Dispatcher::new();
-        println!("Bus Dispatching System\n");
-        let menu: &str ="1. Add bus\n2. Add Person to bus\n3. Remove bus\n4. Remove person\n5. List passengers\n6. List busses\n7. Requeue bus\n8. Transfer person\n9. Dispatch bus\n0. Exit\n";
+        println!("Bus Dispatching System");
         loop {
-            match Driver::get_parsed_input(menu) {
+            match Driver::get_menu_input() {
                 1 => {
                     let bus: Bus = Bus::default();
                     let id: usize = bus.get_id();
@@ -20,12 +19,12 @@ impl Driver {
                 }
                 2 => {
                     let id: usize = Driver::get_parsed_input("Enter bus id: ");
-                    let name: String = Driver::get_raw_input("Enter person's name: ");
-                    let person: Person = Person::new(name.as_str());
                     match dispatcher.find_bus_mut(id) {
                         Some(bus) => {
+                            let name: String = Driver::get_raw_input("Enter person's name: ");
+                            let person: Person = Person::new(name.as_str());
                             bus.add_person(person);
-                            println!("{name} has been added to bus {id}")
+                            println!("\n{name} has been added to bus {id}")
                         }
                         None => println!("No bus with id {id}"),
                     }
@@ -33,7 +32,7 @@ impl Driver {
                 3 => {
                     let id: usize = Driver::get_parsed_input("Enter bus id: ");
                     match dispatcher.remove_bus(id) {
-                        Some(removed_bus) => println!("bus {removed_bus} removed"),
+                        Some((removed_bus, _queue_position)) => println!("bus {removed_bus} removed"),
                         None => println!("No bus with id {id}"),
                     }
                 }
@@ -69,10 +68,19 @@ impl Driver {
                 7 => {}
                 8 => {}
                 9 => {}
-                0 => {}
-                _ => eprintln!("Invalid input: input must be between 0-9 inclusive")
+                0 => {
+                    println!("Shutting down");
+                    break;
+                },
+                _ => eprintln!("\nInvalid input: input must be between 0-9 inclusive")
             }
         }
+    }
+
+    fn get_menu_input() -> usize {
+        let input: usize = Driver::get_parsed_input("\n1. Add bus\n2. Add Person to bus\n3. Remove bus\n4. Remove person\n5. List passengers\n6. List busses\n7. Requeue bus\n8. Transfer person\n9. Dispatch bus\n0. Exit\n");
+        println!();
+        return input;
     }
 
     fn get_parsed_input<T>(prompt: &str) -> T 
@@ -82,7 +90,9 @@ impl Driver {
     {
         loop {
             match Driver::get_raw_input(prompt).parse() {
-                Ok(input) => return input,
+                Ok(input) => {
+                    return input
+                },
                 Err(parse_error) => {
                     eprintln!("\nInvalid input: {parse_error}\n");
                     continue;

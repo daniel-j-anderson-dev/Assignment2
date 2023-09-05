@@ -1,8 +1,8 @@
-mod program_driver;
+mod program;
 mod bus;
 mod person;
 mod dispatcher;
 
 fn main() {
-    println!("Hello, world!");
+    program::Driver::main();
 }

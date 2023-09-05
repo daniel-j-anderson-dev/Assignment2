@@ -18,7 +18,18 @@ impl Driver {
                     let queue_position: usize = dispatcher.add_bus(bus);
                     println!("Bus {id} added to position {queue_position}");
                 }
-                2 => {}
+                2 => {
+                    let id: usize = Driver::get_parsed_input("Enter bus id: ");
+                    let name: String = Driver::get_raw_input("Enter person's name: ");
+                    let person: Person = Person::new(name.as_str());
+                    match dispatcher.find_bus_mut(id) {
+                        Some(bus) => {
+                            bus.add_person(person);
+                            println!("{name} has been added to bus {id}")
+                        }
+                        None => println!("No bus with id {id}"),
+                    }
+                }
                 3 => {}
                 4 => {}
                 5 => {}

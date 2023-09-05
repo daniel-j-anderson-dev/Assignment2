@@ -31,6 +31,14 @@ impl Person {
         }
         return Person { name, ticket_number};
     }
+    
+    pub fn get_name(&self) -> &str {
+        return self.name.as_str();
+    }
+
+    pub fn get_ticket_number(&self) -> &usize {
+        return &self.ticket_number;
+    }
 }
 
 // allows for &[Person].to_vec()

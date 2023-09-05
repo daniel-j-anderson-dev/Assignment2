@@ -17,7 +17,7 @@ impl Default for Person {
 
 impl std::fmt::Display for Person{ // this trait gives .to_string()
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-        return write!(f, "{} {}", self.ticket_number, self.name);
+        return write!(f, "{} {}", self.get_ticket_number(), self.get_name());
     }
 }
 

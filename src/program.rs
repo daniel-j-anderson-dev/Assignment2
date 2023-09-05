@@ -3,44 +3,41 @@ impl Driver {
     pub fn main() {
         // let dispatcher = Dispatcher::new();
         println!("Bus Dispatching System\n");
+        let menu: &str ="1. Add bus\n2. Add Person to bus\n3. Remove bus\n4. Remove person\n5. List passengers\n6. List busses\n7. Requeue bus\n8. Transfer person\n9. Dispatch bus\n0. Exit\n";
         loop {
-            let menu_input: usize = Driver::get_menu_input();
-            println!("\n{menu_input}\n");
-        }
-    }
-
-    fn get_menu_input() -> usize {
-        loop {
-            let input: usize = Driver::get_input_usize("1. Add bus\n2. Add Person to bus\n3. Remove bus\n4. Remove person\n5. List passengers\n6. List busses\n7. Requeue bus\n8. Transfer person\n9. Dispatch bus\n0. Exit\n");
-            match input {
-                1 => return input,
-                2 => return input,
-                3 => return input,
-                4 => return input,    
-                5 => return input,
-                6 => return input,
-                7 => return input,
-                8 => return input,
-                9 => return input,
-                0 => return input,
-                _ => eprintln!("\nInvalid input: input must be between 0-9 inclusive\n"),
+            match Driver::get_input(menu) {
+                1 => {}
+                2 => {}
+                3 => {}
+                4 => {}
+                5 => {}
+                6 => {}
+                7 => {}
+                8 => {}
+                9 => {}
+                0 => {}
+                _ => eprintln!("Invalid input: input must be between 0-9 inclusive")
             }
         }
     }
 
-    fn get_input_usize(prompt: &str) -> usize {
+    fn get_input<T>(prompt: &str) -> T 
+    where
+        T: std::str::FromStr,
+        <T as std::str::FromStr>::Err: std::fmt::Display,
+    {
         loop {
-            match Driver::get_input_string(prompt).parse() {
+            match Driver::read_line(prompt).parse() {
                 Ok(input) => return input,
-                Err(parse_int_error) => {
-                    eprintln!("\nInvalid input: {parse_int_error}\n");
+                Err(parse_error) => {
+                    eprintln!("\nInvalid input: {parse_error}\n");
                     continue;
                 }
             }
         }
     }
 
-    fn get_input_string(prompt: &str) -> String {
+    fn read_line(prompt: &str) -> String {
         use std::io::{stdin, stdout, Write};
         
         loop {

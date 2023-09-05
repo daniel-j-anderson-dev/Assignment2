@@ -18,4 +18,13 @@ impl Dispatcher {
             return queue_position;
         }
     }
+
+    pub fn find_bus(&self, bus_id: usize) -> Option<&Bus> {
+        for (queue_position, bus) in self.bus_queue.iter().enumerate() {
+            if bus.get_id() == bus_id {
+                return self.bus_queue.get(queue_position);
+            }
+        }
+        return None;
+    }
 }

@@ -1,4 +1,4 @@
-use crate::person::Person;
+use crate::program::person::Person;
 
 static mut NEXT_ID: usize = 0;
 pub struct Bus {
@@ -78,7 +78,7 @@ impl Bus {
 /// Test must not be run concurrently. this will caused undefined behavior
 #[cfg(test)]
 mod test {
-    use crate::{bus::Bus, person::Person};
+    use crate::program::{bus::Bus, person::Person};
     #[test]
     fn constructors() {
         let passengers_b = [Person::default(), Person::default(), Person::default()];

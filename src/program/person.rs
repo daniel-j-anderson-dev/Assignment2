@@ -71,7 +71,7 @@ impl PartialOrd for Person {
 }
 #[cfg(test)]
 mod test {
-    use crate::person::Person;
+    use crate::program::person::Person;
     #[test]
     fn test() {
         let p1 = Person::default();

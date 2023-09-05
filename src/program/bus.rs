@@ -73,7 +73,11 @@ impl Bus {
             passengers_string.push_str(passenger.to_string().as_str());
             passengers_string.push('\n');
         }
-        return passengers_string;
+        if passengers_string.is_empty() {
+            return "No passengers.".to_owned();
+        } else {
+            return passengers_string;
+        }
     }
 }
 
@@ -146,9 +150,9 @@ mod test {
         let otuput_c = bus.find_person("c");
         let output_d = bus.find_person("d");
 
-        assert!(output_a == Some(&person_a));
-        assert!(output_b == Some(&person_b));
-        assert!(otuput_c == Some(&person_c));
+        assert!(output_a == Some(person_a));
+        assert!(output_b == Some(person_b));
+        assert!(otuput_c == Some(person_c));
         assert!(output_d == None);
     }
     

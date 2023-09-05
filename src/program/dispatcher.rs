@@ -45,3 +45,14 @@ impl Dispatcher {
         }
     }
 }
+
+impl std::fmt::Display for Dispatcher {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        let mut buses: String = String::new();
+        for bus in self.bus_queue.iter() {
+            buses.push_str(bus.to_string().as_str());
+            buses.push('\n')
+        }
+        return write!(f, "{buses}");
+    }
+}

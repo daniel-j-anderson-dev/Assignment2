@@ -1,5 +1,6 @@
 use crate::program::bus::Bus;
 
+#[derive(Clone)]
 pub struct Dispatcher {
     bus_queue: Vec<Bus>
 }

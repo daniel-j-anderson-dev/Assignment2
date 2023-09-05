@@ -1,6 +1,8 @@
 use crate::program::person::Person;
 
 static mut NEXT_ID: usize = 0;
+
+#[derive(Clone)]
 pub struct Bus {
     passengers: Vec<Person>,
     id: usize,

@@ -43,10 +43,10 @@ impl Dispatcher {
         return None;
     }
 
-    pub fn remove_bus(&mut self, bus_id: usize) -> Option<Bus> {
+    pub fn remove_bus(&mut self, bus_id: usize) -> Option<(Bus, usize)> {
         for (queue_position, bus) in self.bus_queue.iter().enumerate() {
             if bus.get_id() == bus_id {
-                return Some(self.bus_queue.remove(queue_position));
+                return Some((self.bus_queue.remove(queue_position), queue_position));
             }
         }
         return None;

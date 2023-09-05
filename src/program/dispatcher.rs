@@ -11,7 +11,7 @@ impl Dispatcher {
 
     pub fn add_bus(&mut self, bus: Bus) -> usize{
         self.bus_queue.push(bus);
-        return self.bus_queue.len();
+        return self.bus_queue.len() - 1;
     }
 
     // add_bus() "overload"

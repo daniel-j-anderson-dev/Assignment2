@@ -69,13 +69,16 @@ impl PartialOrd for Person {
         return Some(self.cmp(other));
     }
 }
-
-#[test]
-fn test() {
-    let p1 = Person::default();
-    let p2 = Person::new("Daniel");
-    let p3 = Person::new("Ziz");
-    assert!(&p1.to_string() == "0 NO NAME");
-    assert!(&p2.to_string() == "1 Daniel");
-    assert!(&p3.to_string() == "2 Ziz");
+#[cfg(test)]
+mod test {
+    use crate::person::Person;
+    #[test]
+    fn test() {
+        let p1 = Person::default();
+        let p2 = Person::new("Daniel");
+        let p3 = Person::new("Ziz");
+        assert!(&p1.to_string() == "0 NO NAME");
+        assert!(&p2.to_string() == "1 Daniel");
+        assert!(&p3.to_string() == "2 Ziz");
+    }
 }

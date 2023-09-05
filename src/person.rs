@@ -19,6 +19,14 @@ impl std::fmt::Display for Person{ // this trait gives .to_string()
         return write!(f, "{} {}", self.ticket_number, self.name);
     }
 }
+impl Clone for Person {
+    fn clone(&self) -> Self {
+        return Person { 
+            name: self.name.clone(),
+            ticket_number: self.ticket_number.clone()
+        };
+    }
+}
 impl Person {
     fn new(name: &str) -> Self {
         let name: String = name.to_owned();

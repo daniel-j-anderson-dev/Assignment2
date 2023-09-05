@@ -3,6 +3,8 @@ mod bus;
 mod person;
 mod dispatcher;
 
+use program::Driver;
+
 fn main() {
-    program::Driver::main();
+    Driver::main();
 }

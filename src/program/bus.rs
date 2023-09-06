@@ -49,10 +49,10 @@ impl Bus {
         }
     }
 
-    pub fn find_person(&self, name: &str) -> Option<Person> {
+    pub fn find_person(&self, name: &str) -> Option<&Person> {
         for person in self.passengers.iter() {
             if name == person.get_name() {
-                return Some(person.clone());
+                return Some(&person);
             }
         }
         return None;

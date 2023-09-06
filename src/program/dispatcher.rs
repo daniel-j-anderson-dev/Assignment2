@@ -18,8 +18,8 @@ impl Dispatcher {
     pub fn insert_bus(&mut self, bus: Bus, queue_position: usize) -> usize {
         if queue_position > self.bus_queue.len() {
             self.bus_queue.push(bus);
-            return self.bus_queue.len();
-        } else {            
+            return self.bus_queue.len() - 1;
+        } else {
             self.bus_queue.insert(queue_position, bus);
             return queue_position;
         }
@@ -43,10 +43,10 @@ impl Dispatcher {
         return None;
     }
 
-    pub fn remove_bus(&mut self, bus_id: usize) -> Option<(Bus, usize)> {
+    pub fn remove_bus(&mut self, bus_id: usize) -> Option<Bus> {
         for (queue_position, bus) in self.bus_queue.iter().enumerate() {
             if bus.get_id() == bus_id {
-                return Some((self.bus_queue.remove(queue_position), queue_position));
+                return Some(self.bus_queue.remove(queue_position));
             }
         }
         return None;
